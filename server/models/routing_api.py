@@ -1,9 +1,7 @@
 import requests
 
-# Replace with your actual TomTom API key
-API_KEY = "bCgG47VKka8a1fdVumQj8hIyfjsjbsSA"
+API_KEY = "API"
 
-# Base URL for the TomTom Routing API
 BASE_URL = "https://api.tomtom.com/routing/1/calculateRoute"
 
 def fetch_route(source, destination, vehicle_type="car"):
@@ -19,21 +17,18 @@ def fetch_route(source, destination, vehicle_type="car"):
     Returns:
         dict: JSON response from the TomTom API or an error message.
     """
-    # Construct the full API URL
     url = f"{BASE_URL}/{source}:{destination}/json"
     
-    # Parameters for the API request
     params = {
         "key": API_KEY,
-        "instructionsType": "coded",  # Simplified instructions format
-        "routeRepresentation": "polyline",  # Return the polyline for the route
-        "travelMode": vehicle_type,  # Specify the travel mode
+        "instructionsType": "coded", 
+        "routeRepresentation": "polyline", 
+        "travelMode": vehicle_type, 
     }
 
     try:
-        # Make the API request
         response = requests.get(url, params=params)
-        response.raise_for_status()  # Raise an error for bad responses (4xx or 5xx)
-        return response.json()  # Return the JSON response
+        response.raise_for_status() 
+        return response.json() 
     except requests.exceptions.RequestException as e:
-        return {"error": str(e)}  # Return the error as JSON
+        return {"error": str(e)}

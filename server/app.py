@@ -13,12 +13,10 @@ def traffic_incidents():
     """
     Handle API requests for traffic incidents.
     """
-    # Get bounding box from the request arguments
     bounding_box = request.args.get('bounding_box')
     if not bounding_box:
         return jsonify({"error": "Missing 'bounding_box' parameter"}), 400
 
-    # Fetch traffic incidents using the function from traffic_api.py
     data = fetch_traffic_incidents(bounding_box)
     return jsonify(data)
 
@@ -37,7 +35,6 @@ def route():
     """
     Handle API requests for route details.
     """
-    # Get parameters from request arguments
     source = request.args.get('source')
     destination = request.args.get('destination')
     vehicle_type = request.args.get('vehicle_type')
@@ -45,12 +42,10 @@ def route():
     if not source or not destination:
         return jsonify({"error": "Missing 'source' or 'destination' parameter"}), 400
 
-    # Validate vehicle type
     is_valid, error_message = validate_vehicle_type(vehicle_type)
     if not is_valid:
         return jsonify({"error": error_message}), 400
 
-    # Fetch route details with vehicle type
     data = fetch_route(source, destination, vehicle_type)
     return jsonify(data)
 @app.route('/air-quality', methods=['GET'])
@@ -58,7 +53,6 @@ def air_quality():
     """
     Handle API requests for air quality data.
     """
-    # Get latitude and longitude from the request arguments
     lat = request.args.get('lat')
     lon = request.args.get('lon')
 
@@ -66,13 +60,11 @@ def air_quality():
         return jsonify({"error": "Missing 'lat' or 'lon' parameter"}), 400
 
     try:
-        # Validate coordinates as floats
         lat = float(lat)
         lon = float(lon)
     except ValueError:
         return jsonify({"error": "Invalid 'lat' or 'lon' value. Must be numbers."}), 400
 
-    # Fetch air quality data using the function from meteorological_api.py
     data = fetch_nearest_air_quality(lat, lon)
     return jsonify(data)
 

@@ -69,7 +69,7 @@ const RouteDisplay = () => {
 
   const fetchSuggestions = async (query, setSuggestions) => {
     try {
-      const apiKey = "bCgG47VKka8a1fdVumQj8hIyfjsjbsSA";
+      const apiKey = "API";
       const response = await fetch(
         `https://api.tomtom.com/search/2/search/${encodeURIComponent(
           query

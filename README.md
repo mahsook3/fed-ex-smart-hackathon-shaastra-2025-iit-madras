@@ -102,6 +102,3 @@ python app.py
 - **TomTom API**: For real-time traffic data and route generation.
 - **AQICN API**: For air quality data.
 - **Open-Meteo API**: For weather data.
-
-## Conclusion
-This project aims to enhance travel efficiency, improve customer satisfaction, and promote environmental sustainability by providing a dynamic routing system that considers real-time traffic, weather, and vehicle-specific details.
